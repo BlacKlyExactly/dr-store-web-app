@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import passport from "passport";
 import SteamStrategy from "passport-steam";
 
@@ -19,7 +21,7 @@ passport.deserializeUser(( obj: any, done: any ) => {
 });
 
 passport.use(
-    SteamStrategy(data, ( identifier: any, profile: any, done: any ) => {
+    new SteamStrategy(data, ( identifier: any, profile: any, done: any ) => {
         profile.identifier = identifier;    
         done(null, profile);
     })

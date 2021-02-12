@@ -11,10 +11,6 @@ export default ( req: NextApiRequest, res: NextApiResponse ) => {
             res.status(200).end();
             return resolve(200);
         }
-
-        const {
-            query: { log },
-        } = req;
         
         const today = new Date();
         const date: string = `${today.getFullYear()}-${(today.getMonth()+1)}-${today.getDate()}`;
