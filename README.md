@@ -1,34 +1,159 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dr-store-web-app
 
-## Getting Started
+![img-pc](https://i.imgur.com/nFyYzcN.png)
+# Opis
+Aplikacja webowa stworzona na potrzeby serwera **CS:GO Jailbreak**: [91.224.117.26:27090](steam://connect/91.224.117:27090).
+Wykorzystująca technologie:
+ - React (Next.js)
+ - Typescript
+ - MySql
+ - Passport.js
+ - Socket.io
 
-First, run the development server:
+**Uwaga**: Strona wykorzystuję mój autorski sklep z itemami i w tym momencie nie wspiera min. Store by Zephyrus<br/>
 
-```bash
-npm run dev
-# or
-yarn dev
+# Instalacja i Konfiguracja
+**1.** `cd dr-store-web-app`<br/>
+**2.** `npm install` lub `yarn install`<br/>
+**3.** Stwórz plik **.env** w katalogu głównym projektu (jeśli korzystasz z hostingu, który pozwala na ustawiania zmiennych środowiskowych pomiń ten krok)<br/>
+**4.** Uzupełnij plik **.env** w następujący sposób: (jeśli korzystasz z hostingu, który pozwala na ustawiania zmiennych środowiskowych uzupełnij zmienne z niżej)<br/>
+``` 
+COOKIES_SECRET=wstaw tu swój losowo wygenerowany klucz
+WEB_API_KEY=wstaw tu swój api key https://steamcommunity.com/dev/apikey
+DB_HOST=host twojej bazy danych
+DB_DATABASE=nazwa bazy danych
+DB_USER=użytkownik bazy danych
+DB_PASS=hasło bazy danych
+DOMAIN=domena strony internetowej, na której będzie działała strona
+NEXT_PUBLIC_SERVER_SHORT_NAME=krótka nazwa twojego serwera
+NEXT_PUBLIC_SERVER_HOST=ip twojego serwera
+NEXT_PUBLIC_SERVER_PORT=port twojego serwera
+NEXT_PUBLIC_SITE_NAME=tytuł strony np. (twoja wpisana tu nazwa) | Strona Główna
+NEXT_PUBLIC_API_AUTH_TOKEN=wstaw tu swój inny losowo wygenerowany klucz
+NEXT_PUBLIC_API_AUTH_TYPE=Bearer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**5**. `yarn build` lub `npm run build`<br/>
+**6**. `yarn start` lub `npm run start`<br/>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+**7.**  Konfiguracja przedmiotów:<br/>
+```typescript
+//items.ts (folder główny aplikacji)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+//Przykładowy config
+const  storeItems:  StoreItem[] = [
+	{
+		name:  "PRO", //nazwa przedmiotu
+		id:  "51", //jego id ze sklepu (musi być takie samo jak z configu na serwerze cs go)
+		price:  600, //cena
+		image:  "https://i.imgur.com/m5GUzOZ.png", //link do obrazka
+	},
+	{
+		name:  "Śmieszek", //nazwa przedmiotu
+		id:  "52", //jego id ze sklepu (musi być takie samo jak z configu na serwerze cs go)
+		price:  600, //cena przedmiotu
+		image:  "https://i.imgur.com/TAQiksT.png", //link do obrazka
+	},
+]
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**8.** Konfiguracja daily:<br/>
+```typescript
+//daily.ts (folder główny aplikacji)
 
-## Learn More
+const  daily:  DailyConfig  =  {
+	starts:  "02/08/2021", //Format Daty: miesiąc/dzień/rok
+	ends:  "03/08/2021", //Format Daty: miesiąc/dzień/rok
+	
+	//UWAGA
+	
+	//Jeśli chcesz ustawić monety za koknretny dzień to robisz tak:
+	//{ coins:  <ilość monet za dzień>  }
+	
+	//Jeśli chcesz przedmiot za koknretny dzień to robisz tak:
+	//{ item:  getItemById(<Id przedmiotu z items.ts>) }
+	
+	//Do dyspozycji masz jeszcze takie wartości jak:
+	//"isSpecialDay" - maluje ramkę wokół dnia na niebiesko
+	//"isLegendaryDay" - maluje ramkę na pomarańczowo
+	//Te wartości mają charakter informacyjny
+	
+	//Dodaje je się w następujący sposób
+	//{ coins: <jakaś liczba>, isSpecialDay: true }
+	//{ coins: <jakaś liczba>, isLegendaryDay: true }
+	
+	//Działa też z przedmiotami
+	//{ item:  getItemById(<Id przedmiotu z items.ts>, isSpecialDay: true) }
+	//{ item:  getItemById(<Id przedmiotu z items.ts>, isLegendaryDay: true) }
+	
+	//Przykładowy config
+	days: [
+		{ coins:  30  }, 
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{
+			item:  getItemById("ct4"),
+			isSpecialDay:  true
+		},
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{
+			item:  getItemById("ct4"),
+			isSpecialDay:  true
+		},
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{
+			item:  getItemById("ct4"),
+			isSpecialDay:  true
+		},
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{ coins:  30  },
+		{
+			item:  getItemById("ct4"),
+			isSpecialDay:  true
+		},
+		{ coins:  30  },
+		{ coins:  30  },
+		{
+			item:  getItemById("t12"),
+			isLegendaryDay:  true
+		},
+	]
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+# Znane błędy i pomysły do dodania
+**1.** Usprawnienie wyszukiwania graczy do Papier, Kamień, Nożyce - Dobieranie w tym momencie działa w ten sposób, że do gry dobiera pierwszych dwóch graczy z kolejki, nie zwracając uwagi na postawioną kwotę.<br/>
+**2.** Dodanie ekwipunku (z możliwością ich sprzedawania).<br/>
+**3.** Dodanie sklepu z przedmiotami.<br/>
+**4.**  Dodanie skrzynek do gamblingu<br/>
+**5.** Support dla innych sklepów z itemami<br/>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Wygląd Strony
+![rich-img](https://i.imgur.com/Pd9LBNa.png)
+![gambling-img](https://i.imgur.com/vYuu9HD.png)
+![rps1](https://i.imgur.com/2VOAnU1.png)
+![rps1](https://i.imgur.com/CWZT0k5.png)
+![rps2](https://i.imgur.com/qe1t8CC.png)
+![daily](https://i.imgur.com/nxQvfeI.png)
+![gifts1](https://i.imgur.com/0rssFN2.png)
+![gifts2](https://i.imgur.com/BnY3g8T.png)
+![gifts3](https://i.imgur.com/5beFlB0.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Made with ❤️ by Black
