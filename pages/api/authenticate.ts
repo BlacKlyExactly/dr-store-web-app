@@ -30,5 +30,4 @@ passport.use(
 
 export default async ( req: NextApiRequest, res: NextApiResponse ) => {
     passport.authenticate('steam', { failureRedirect: "/authenticate" });
-    res.status(200).end();
 }
