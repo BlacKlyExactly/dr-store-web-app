@@ -1,5 +1,6 @@
 //@ts-nocheck
 
+import { NextApiRequest, NextApiResponse } from "next";
 import passport from "passport";
 import SteamStrategy from "passport-steam";
 
@@ -27,5 +28,7 @@ passport.use(
     })
 );
 
-
-export default passport.authenticate('steam', { failureRedirect: "/authenticate" });
+export default async ( req: NextApiRequest, res: NextApiResponse ) => {
+    passport.authenticate('steam', { failureRedirect: "/authenticate" });
+    res.status(200).end();
+}
