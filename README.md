@@ -141,9 +141,10 @@ const  daily:  DailyConfig  =  {
 ```
 
 **9.** Zmiana logo:<br/>
-```
-typescript
+```typescript
 //utils/templates.ts
+//Po zmianie należy wykonać ponownie punkt 5 i 6
+
 export const Logo = styled.span`
     position: absolute;
     top: 0;
