@@ -39,6 +39,7 @@ NEXT_PUBLIC_API_AUTH_TYPE=Bearer
 **7.**  Konfiguracja przedmiotów:<br/>
 ```typescript
 //items.ts (folder główny aplikacji)
+//Po zmianie należy wykonać ponownie punkt 5 i 6
 
 //Przykładowy config
 const  storeItems:  StoreItem[] = [
@@ -60,6 +61,7 @@ const  storeItems:  StoreItem[] = [
 **8.** Konfiguracja daily:<br/>
 ```typescript
 //daily.ts (folder główny aplikacji)
+//Po zmianie należy wykonać ponownie punkt 5 i 6
 
 const  daily:  DailyConfig  =  {
 	starts:  "02/08/2021", //Format Daty: miesiąc/dzień/rok
@@ -136,6 +138,46 @@ const  daily:  DailyConfig  =  {
 		},
 	]
 }
+```
+
+**9.** Zmiana logo:<br/>
+```typescript
+//utils/templates.ts
+//Po zmianie należy wykonać ponownie punkt 5 i 6
+
+export const Logo = styled.span`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 109px;
+    height: 109px;
+    z-index: 20;
+    cursor: pointer;
+
+    &:after {
+        content: "";
+        position: absolute;
+        background: url("/images/logo.png"); ${//Żeby zmienić obrazek trzeba podmienić zawartość url z "/images/logo.png" na np. link do obrazka}
+        background-size: cover;
+        width: 85%;
+        height: 85%;
+        top: 10%;
+        left: 10%;
+    }
+
+    @media screen and (min-width: 800px){
+        background: ${darkest};
+        width: 7.5vw;
+        height: 7.5vw;
+
+        &:after {
+            width: 6vw;
+            height: 6vw;
+            top: 10%;
+            left: 10%;
+        }
+    }
+`;
 ```
 
 # Znane błędy i pomysły do dodania
