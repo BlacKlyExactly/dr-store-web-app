@@ -143,6 +143,7 @@ const  daily:  DailyConfig  =  {
 **9.** Zmiana logo:<br/>
 ```typescript
 //utils/templates.ts
+//Żeby zmienić obrazek trzeba podmienić zawartość url z "/images/logo.png" na np. link do obrazka
 //Po zmianie należy wykonać ponownie punkt 5 i 6
 
 export const Logo = styled.span`
@@ -157,7 +158,7 @@ export const Logo = styled.span`
     &:after {
         content: "";
         position: absolute;
-        background: url("/images/logo.png"); ${//Żeby zmienić obrazek trzeba podmienić zawartość url z "/images/logo.png" na np. link do obrazka}
+        background: url("/images/logo.png");
         background-size: cover;
         width: 85%;
         height: 85%;

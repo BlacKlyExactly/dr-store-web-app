@@ -270,7 +270,7 @@ const RpsPlayWindow: FC = () => {
     }
 
     const close = () => {
-        if(game) return;
+        if(getPlayer()) return;
 
         removeFromQueue();
         setTimerState(false);
