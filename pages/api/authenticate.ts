@@ -5,7 +5,7 @@ import passport from "passport";
 import SteamStrategy from "passport-steam";
 
 const dev: boolean = process.env.NODE_ENV === "development";
-const host: string | undefined = dev ? "http:/localhost:3000" : process.env.DOMAIN;
+const host: string | undefined = dev ? "http://localhost:3000" : process.env.DOMAIN;
 
 const data = {
     returnURL: `${host}/api/return/`,
@@ -28,6 +28,4 @@ passport.use(
     })
 );
 
-export default async ( req: NextApiRequest, res: NextApiResponse ) => {
-    passport.authenticate('steam', { failureRedirect: "/authenticate" });
-}
+export default passport.authenticate('steam', { failureRedirect: "/authenticate" });

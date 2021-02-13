@@ -302,7 +302,7 @@ const RpsPlayWindow: FC = () => {
             >
                 <MainPanel ref={mainPanel}>
                     {
-                        game ? (
+                        getPlayer()?.you ? (
                             <>
                                 <YourAvatar>
                                     <AvatarImage src={userData?.avatar}/>
