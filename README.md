@@ -157,7 +157,7 @@ export const Logo = styled.span`
     &:after {
         content: "";
         position: absolute;
-        background: url("/images/logo.png"); //Żeby zmienić obrazek trzeba podmienić zawartość url z "/images/logo.png" na np. link do obrazka
+        background: url("/images/logo.png"); ${//Żeby zmienić obrazek trzeba podmienić zawartość url z "/images/logo.png" na np. link do obrazka}
         background-size: cover;
         width: 85%;
         height: 85%;
