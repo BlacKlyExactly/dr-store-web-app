@@ -10,7 +10,9 @@ Wykorzystująca technologie:
  - Passport.js
  - Socket.io
 
-**Uwaga**: Strona wykorzystuję mój autorski sklep z itemami i w tym momencie nie wspiera min. Store by Zephyrus<br/>
+**Uwaga**: 
+ - Strona wykorzystuję mój autorski sklep z itemami i w tym momencie nie wspiera min. Store by Zephyrus<br/>
+ - Na podpiętej do repo stronie nie działają takie funkcje jak: powiadomienia, rps, informacje o serwerze<br/>
 
 # Instalacja i Konfiguracja
 **1.** `cd dr-store-web-app`<br/>
@@ -185,8 +187,9 @@ export const Logo = styled.span`
 **1.** Usprawnienie wyszukiwania graczy do Papier, Kamień, Nożyce - Dobieranie w tym momencie działa w ten sposób, że do gry dobiera pierwszych dwóch graczy z kolejki, nie zwracając uwagi na postawioną kwotę.<br/>
 **2.** Dodanie ekwipunku (z możliwością ich sprzedawania).<br/>
 **3.** Dodanie sklepu z przedmiotami.<br/>
-**4.**  Dodanie skrzynek do gamblingu<br/>
+**4.** Dodanie skrzynek do gamblingu<br/>
 **5.** Support dla innych sklepów z itemami<br/>
+**6.** Powiadomienia o daily<br/>
 
 # Wygląd Strony
 ![rich-img](https://i.imgur.com/Pd9LBNa.png)
