@@ -66,6 +66,8 @@ const Template: FC<AppUserProps> = ({ userData, isLoged, children }) => {
         steamId === userData.steamId &&
           createNotification("Otrzymałeś prezent!", `Otrzymałeś: ${itemName}, Od: ${name}`);
       });
+
+      socket.on("dailyReminder", () => createNotification("Daily", "Pamiętaj, aby odebrać swoją dzienną nagrodę!"));
     }, [ ]);
 
   return(

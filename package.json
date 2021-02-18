@@ -25,6 +25,7 @@
     "next-cookies": "^2.0.3",
     "nextjs-cors": "^1.0.1",
     "node-cache": "^5.1.2",
+    "node-cron": "^2.0.3",
     "os": "^0.1.1",
     "passport": "^0.4.1",
     "passport-steam": "^1.0.15",

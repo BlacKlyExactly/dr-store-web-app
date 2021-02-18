@@ -30,6 +30,8 @@ const useRouterPush = () => {
     }, [ ])
 
     const push = ( url: string ) => {
+        if(router.pathname === url) return;
+
         gsap.set(`#${id}`, { x: "-100%" });
         gsap.to(`#${id}`, { x: "0%", duration: 1, ease: "power4.inOut" }).then(() => {
             router.push(url, undefined, { shallow: true });

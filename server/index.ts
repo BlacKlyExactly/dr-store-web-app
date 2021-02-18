@@ -3,6 +3,7 @@ import http, { IncomingMessage, ServerResponse } from 'http';
 import next from "next";
 import express from "express";
 import socketIo, { Socket } from "socket.io";
+import cron from "node-cron";
 
 const app = express();
 const server = new http.Server(app);
@@ -20,6 +21,10 @@ let rpsGame: Rps;
 
 io.sockets.on("connection", ( socket: Socket ) => {
   if(!rpsGame) rpsGame = new Rps(io);
+
+  cron.schedule('0 1 * * *', () => {
+    io.emit("dailyReminder");
+  });
 
   socket.on("giftSend", ({ steamId, name, itemName }) => {
     io.emit("giftRecive", {

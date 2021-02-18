@@ -111,7 +111,7 @@ export const Icon = styled.div`
     opacity: 0.5;
     width: 100%;
     height: 100%;
-    font-size: 4 0px;
+    font-size: 40px;
 
     @media screen and (min-width: 800px){
         font-size: 3vw;

@@ -45,9 +45,10 @@ export default async ( req: NextApiRequest, res: NextApiResponse ) => {
                 } 
 
                 if(result[0]){
-                    const items: string[] = result[0].equipment.split(";");
+                    let items: string[] = result[0].equipment.split(";");
                     const itemToRemove: string = items.find(( foundItem: string ) => foundItem === item);
                     items.splice(items.indexOf(itemToRemove), 1);
+                    items = items.filter(( item ) => item !== null);
 
                     pool.query('UPDATE `users` SET equipment=? WHERE steamID=?', [ items.join(";"), steamId ]);
                     
