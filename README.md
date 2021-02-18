@@ -185,11 +185,11 @@ export const Logo = styled.span`
 
 # Znane błędy i pomysły do dodania
 **1.** Usprawnienie wyszukiwania graczy do Papier, Kamień, Nożyce - Dobieranie w tym momencie działa w ten sposób, że do gry dobiera pierwszych dwóch graczy z kolejki, nie zwracając uwagi na postawioną kwotę.<br/>
-**2.** Dodanie ekwipunku (z możliwością ich sprzedawania).<br/>
-**3.** Dodanie sklepu z przedmiotami.<br/>
+**2.** ~~Dodanie ekwipunku (z możliwością ich sprzedawania).~~<br/>
+**3.** ~~Dodanie sklepu z przedmiotami.~~<br/>
 **4.** Dodanie skrzynek do gamblingu<br/>
 **5.** Support dla innych sklepów z itemami<br/>
-**6.** Powiadomienia o daily<br/>
+**6.** ~~Powiadomienia o daily~~<br/>
 
 # Wygląd Strony
 ![rich-img](https://i.imgur.com/Pd9LBNa.png)
