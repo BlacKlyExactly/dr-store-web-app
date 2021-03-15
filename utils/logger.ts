@@ -1,9 +1,5 @@
-const logger = async( log: string ) => {
-    try {
-        console.log(log);
-    } catch (error) {
-        console.log(error);
-    }
+const logger = ( log: string ) => {
+    console.log(log);
 }
 
 export default logger;
