@@ -5,6 +5,8 @@ import express from "express";
 import socketIo, { Socket } from "socket.io";
 import cron from "node-cron";
 
+const port: string = process.env.PORT || "3000";
+
 const app = express();
 const server = new http.Server(app);
 const io = new socketIo.Server(server, {
@@ -75,5 +77,5 @@ io.sockets.on("connection", ( socket: Socket ) => {
 nextApp.prepare().then(() => {
   app.get('*', ( req: IncomingMessage, res: ServerResponse ) => handle(req, res));
 
-  server.listen(3000, () => console.log("> Ready on -> 127.0.0.1:3000"));
+  server.listen(port, () => console.log("> Ready on -> 127.0.0.1:3000"));
 })
