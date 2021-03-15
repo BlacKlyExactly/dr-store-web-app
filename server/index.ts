@@ -3,6 +3,7 @@ import http, { IncomingMessage, ServerResponse } from 'http';
 import next from "next";
 import express from "express";
 import socketIo, { Socket } from "socket.io";
+import cors from "cors";
 import cron from "node-cron";
 
 const port: string = "3000";
@@ -11,9 +12,11 @@ const app = express();
 const server = new http.Server(app);
 const io = new socketIo.Server(server, {
   cors: {
-    origin: false,
+    origin: '*',
   }
 });
+
+app.use(cors());
 
 const dev: boolean = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
