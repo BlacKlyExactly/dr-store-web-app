@@ -11,7 +11,9 @@ const app = express();
 const server = new http.Server(app);
 const io = new socketIo.Server(server, {
   cors: {
-    origin: `${process.env.NEXT_PUBLIC_DOMAIN}${port}`
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
