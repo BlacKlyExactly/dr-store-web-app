@@ -28,7 +28,9 @@ const useRps = (
         socket.on("rpsTimeChange",  ({ time, game }) => onTimeChange({ timeGame: time, game }));
         socket.on("rpsTimeEnd", ({ game }) => onTimeEnd(game))
 
-        return () => socket.disconnect();
+        return () => {
+            socket.disconnect();
+        }
     }, [ ])
 
     const addToQueue = () => socket.emit("rpsAddToQueue", {

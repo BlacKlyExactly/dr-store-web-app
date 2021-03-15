@@ -148,23 +148,23 @@ const Rich: FC<AppUserProps> = ({ userData, isLoged }) => {
         gsap.from(
             [ ...players.current.children, loggedPlayer.current ],
             {
-                delay: 1.2,
+                delay: 1,
                 opacity: 0,
                 y: 15,
                 duration: 0.5,
-                stagger: 0.15
+                stagger: 0.1
             }
         )
     }, [ isLoading ])
 
     const getLogedUser = ( ) => {
-        if(!data) return;
+        if(!data || !userData) return;
 
         const user = data.find(({ steamID }) => steamID === userData.steamId);
         
         return {
             place: data.indexOf(user) + 1,
-            coins: user.coins
+            coins: user?.coins
         }
     }
 
@@ -188,7 +188,7 @@ const Rich: FC<AppUserProps> = ({ userData, isLoged }) => {
                         {isLoading && !error && <p>Ładowanie topki...</p>}
                         {error && <p>Błąd ładowania topki :(</p>}
 
-                        {!error && !isLoading && data?.slice(0, 10).map(({ coins, name }, index: number) => (
+                        {!error && data?.slice(0, 10).map(({ coins, name }, index: number) => (
                             <RichPlayer
                                 place={index + 1}
                                 name={encode(name)}
@@ -199,9 +199,9 @@ const Rich: FC<AppUserProps> = ({ userData, isLoged }) => {
                     </TopRichPlayers>
                     {(userData && data) ? (
                         <RichPlayer
-                            place={getLogedUser().place}
+                            place={getLogedUser()?.place}
                             name="TY"
-                            coins={getLogedUser().coins}
+                            coins={getLogedUser()?.coins}
                             isSingleInstance
                         />
                     ) : <p>Aby zobaczyć swoją pozycję<br/>Musisz się zalogować</p>}

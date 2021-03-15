@@ -29,6 +29,7 @@ const Buttons = styled.div`
 const SearchText = styled.h1`
     color: ${red};
     font-size: 200%;
+    text-align: center;
 
     span{
         color: ${blue};
@@ -269,7 +270,7 @@ const RpsPlayWindow: FC = () => {
     }
 
     const close = () => {
-        if(game) return;
+        if(getPlayer()) return;
 
         removeFromQueue();
         setTimerState(false);
@@ -302,7 +303,7 @@ const RpsPlayWindow: FC = () => {
             >
                 <MainPanel ref={mainPanel}>
                     {
-                        game ? (
+                        getPlayer() ? (
                             <>
                                 <YourAvatar>
                                     <AvatarImage src={userData?.avatar}/>
@@ -340,7 +341,7 @@ const RpsPlayWindow: FC = () => {
                         )
                     }
                     <Buttons>
-                        {!game && (
+                        {!getPlayer() && (
                             <Button 
                                 background={red}
                                 onClick={() => close()}

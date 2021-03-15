@@ -35,7 +35,7 @@ const DailyItems: FC = () => {
     const wrapper = useRef<HTMLDivElement>();
 
     useEffect(() => {
-        wrapper.current && gsap.from(
+        dailyItems.data && gsap.from(
             wrapper.current.children,
             {
                 y: 10,
@@ -45,7 +45,7 @@ const DailyItems: FC = () => {
                 ease: "power4.out"
             }
         )
-    }, [  ])
+    }, [ dailyItems.data ])
     
     return(
         <DailyItemsWrapper ref={wrapper}>

@@ -42,7 +42,7 @@ export default ( req: NextApiRequest, res: NextApiResponse ) => {
             ( error ) => {
                 if(error) {
                     console.log(error);
-                    logger(`Błąd zapytania (dodawanie użytkownika do bazy | klient: ${steamId}) ${JSON.stringify(error)}`);
+                    logger(`Błąd zapytania (dodawanie daily dla użytkownika do bazy | klient: ${steamId}) ${JSON.stringify(error)}`);
 
                     return;
                 } 

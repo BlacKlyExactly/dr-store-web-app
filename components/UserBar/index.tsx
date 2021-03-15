@@ -38,9 +38,9 @@ const UserBar: FC = () => {
 
     return(
         <Wrapper ref={wrapper}>
-            <Avatar url={userData.avatar}/>
+            <Avatar url={userData?.avatar}/>
             <Info>
-                <Name>Black</Name>
+                <Name>{userData?.name}</Name>
                 <Coins>{data} <span>fajek</span></Coins>
             </Info>
             <LogOut onClick={() => window.location.replace("/api/logout")}>

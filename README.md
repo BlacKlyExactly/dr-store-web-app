@@ -10,7 +10,9 @@ Wykorzystująca technologie:
  - Passport.js
  - Socket.io
 
-**Uwaga**: Strona wykorzystuję mój autorski sklep z itemami i w tym momencie nie wspiera min. Store by Zephyrus<br/>
+**Uwaga**: 
+ - Strona wykorzystuję mój autorski sklep z itemami i w tym momencie nie wspiera min. Store by Zephyrus<br/>
+ - Na podpiętej do repo stronie nie działają takie funkcje jak: powiadomienia, rps, informacje o serwerze<br/>
 
 # Instalacja i Konfiguracja
 **1.** `cd dr-store-web-app`<br/>
@@ -39,6 +41,7 @@ NEXT_PUBLIC_API_AUTH_TYPE=Bearer
 **7.**  Konfiguracja przedmiotów:<br/>
 ```typescript
 //items.ts (folder główny aplikacji)
+//Po zmianie należy wykonać ponownie punkt 5 i 6
 
 //Przykładowy config
 const  storeItems:  StoreItem[] = [
@@ -60,6 +63,7 @@ const  storeItems:  StoreItem[] = [
 **8.** Konfiguracja daily:<br/>
 ```typescript
 //daily.ts (folder główny aplikacji)
+//Po zmianie należy wykonać ponownie punkt 5 i 6
 
 const  daily:  DailyConfig  =  {
 	starts:  "02/08/2021", //Format Daty: miesiąc/dzień/rok
@@ -138,12 +142,54 @@ const  daily:  DailyConfig  =  {
 }
 ```
 
+**9.** Zmiana logo:<br/>
+```typescript
+//utils/templates.ts
+//Żeby zmienić obrazek trzeba podmienić zawartość url z "/images/logo.png" na np. link do obrazka
+//Po zmianie należy wykonać ponownie punkt 5 i 6
+
+export const Logo = styled.span`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 109px;
+    height: 109px;
+    z-index: 20;
+    cursor: pointer;
+
+    &:after {
+        content: "";
+        position: absolute;
+        background: url("/images/logo.png");
+        background-size: cover;
+        width: 85%;
+        height: 85%;
+        top: 10%;
+        left: 10%;
+    }
+
+    @media screen and (min-width: 800px){
+        background: ${darkest};
+        width: 7.5vw;
+        height: 7.5vw;
+
+        &:after {
+            width: 6vw;
+            height: 6vw;
+            top: 10%;
+            left: 10%;
+        }
+    }
+`;
+```
+
 # Znane błędy i pomysły do dodania
 **1.** Usprawnienie wyszukiwania graczy do Papier, Kamień, Nożyce - Dobieranie w tym momencie działa w ten sposób, że do gry dobiera pierwszych dwóch graczy z kolejki, nie zwracając uwagi na postawioną kwotę.<br/>
-**2.** Dodanie ekwipunku (z możliwością ich sprzedawania).<br/>
-**3.** Dodanie sklepu z przedmiotami.<br/>
-**4.**  Dodanie skrzynek do gamblingu<br/>
+**2.** ~~Dodanie ekwipunku (z możliwością ich sprzedawania).~~<br/>
+**3.** ~~Dodanie sklepu z przedmiotami.~~<br/>
+**4.** Dodanie skrzynek do gamblingu<br/>
 **5.** Support dla innych sklepów z itemami<br/>
+**6.** ~~Powiadomienia o daily~~<br/>
 
 # Wygląd Strony
 ![rich-img](https://i.imgur.com/Pd9LBNa.png)

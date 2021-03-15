@@ -1,6 +1,12 @@
 import React, { FC, useEffect, useRef, useReducer, Reducer } from "react";
 import { useRouter } from "next/router";
 import gsap from "gsap";
+import { horizontalSelects, HorizontalNavSelect } from "../HorizontalNav";
+import useRouterPush from "hooks/useRouterPush";
+import { VerticalSelect } from "utils/templates";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { VerticalNavItems } from "components/VerticalNav";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import {
     MenuToggler,
@@ -11,14 +17,6 @@ import {
     MenuBoxButtons,
 } from "./style";
 
-import { horizontalSelects, HorizontalNavSelect } from "../HorizontalNav";
-import Gifts from "../Gifts/";
-import { faBell, faGift, faTimes } from "@fortawesome/free-solid-svg-icons";
-import useRouterPush from "hooks/useRouterPush";
-import { VerticalSelect } from "utils/templates";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useNotificaions from "hooks/useNotifications";
-
 type TimelinesReducer = {
     togglerTl: GSAPTimeline,
     menuTl: GSAPTimeline,
@@ -27,7 +25,6 @@ type TimelinesReducer = {
 const HamburgerMenu: FC = () => {    
     const router = useRouter();
     const { push } = useRouterPush();
-    const { requestPermission } = useNotificaions();
 
     const [ timelines ] = 
         useReducer<Reducer<TimelinesReducer, TimelinesReducer>>(
@@ -89,10 +86,7 @@ const HamburgerMenu: FC = () => {
                     ))}
                 </MenuBoxSelects>
                 <MenuBoxButtons ref={buttons1}>
-                    <Gifts icon={faGift}/>
-                    <VerticalSelect onClick={() => requestPermission(true)}>
-                        <FontAwesomeIcon icon={faBell}/>
-                    </VerticalSelect>
+                    <VerticalNavItems/>
                 </MenuBoxButtons>
                 <MenuBoxButtons ref={buttons2}>
                     <VerticalSelect onClick={handleTogglerClick}>

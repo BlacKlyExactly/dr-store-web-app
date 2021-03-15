@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AppProps } from "next/app";
 import { UserData } from "../hooks/useUser";
-import { blue, main } from "../utils/colors";
+import { blue, darkest, main } from "../utils/colors";
 import PageLoader from "components/PageLoader";
 
 const Wrapper = styled.div`
@@ -19,10 +19,35 @@ const Wrapper = styled.div`
 `;
 
 const Global = createGlobalStyle`
+  @media only screen and (min-device-width: 736px) {
+    ::-webkit-scrollbar {
+        width: 16px;
+        height: 16px;
+    }
+
+    ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: ${blue};
+        border-radius: 50px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: ${darkest};
+        border-radius: 100px;
+    }
+
+    ::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+  }
+
   *,
   *::before,
-  *::after
-  {
+  *::after {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     box-sizing: border-box;

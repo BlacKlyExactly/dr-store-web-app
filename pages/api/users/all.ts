@@ -24,7 +24,7 @@ export default async ( req: NextApiRequest, res: NextApiResponse ) => {
                 }
 
                 if(result[0]){
-                    res.status(200).send(result);
+                    res.status(200).send(result.filter(( item ) => item.steamID !== "BOT"));
                     return resolve(200);
                 }
                 

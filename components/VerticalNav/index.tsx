@@ -1,11 +1,12 @@
 import React, { FC, useEffect, useRef } from "react";
 import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
-import { faBell, faGift } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faBox, faGift, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { Logo, VerticalSelect } from "utils/templates";
 import Gifts from "../Gifts/";
 import gsap from "gsap";
 import useNotificaions from "hooks/useNotifications";
+import useRouterPush from "hooks/useRouterPush";
 
 import { 
     Wrapper,
@@ -13,8 +14,6 @@ import {
 } from "./style";
 
 const VerticalNav: FC = () => {
-    const { requestPermission } = useNotificaions();
-    
     const selects = useRef<HTMLUListElement>(null);
 
     useEffect(() => {
@@ -37,12 +36,29 @@ const VerticalNav: FC = () => {
                 <Logo/>
             </Link>
             <Selects ref={selects}>
-                <Gifts icon={faGift}/>
-                <VerticalSelect onClick={() => requestPermission(true)}>
-                    <FontAwesomeIcon icon={faBell}/>
-                </VerticalSelect>
+                <VerticalNavItems />
             </Selects>
         </Wrapper>
+    )
+}
+
+export const VerticalNavItems: FC = () => {
+    const { requestPermission } = useNotificaions();
+    const { push } = useRouterPush();
+
+    return(
+        <>
+            <Gifts icon={faGift}/>
+            <VerticalSelect onClick={() => requestPermission(true)}>
+                <FontAwesomeIcon icon={faBell}/>
+            </VerticalSelect>
+            <VerticalSelect onClick={() => push("/shop")}>
+                <FontAwesomeIcon icon={faShoppingBag}/>
+            </VerticalSelect>
+            <VerticalSelect onClick={() => push("/equipment")}>
+                <FontAwesomeIcon icon={faBox}/>
+            </VerticalSelect>
+        </>
     )
 }
 
