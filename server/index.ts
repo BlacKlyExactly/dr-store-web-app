@@ -16,8 +16,6 @@ const io = new socketIo.Server(server, {
   }
 });
 
-app.use(cors());
-
 const dev: boolean = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();

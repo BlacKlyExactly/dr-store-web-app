@@ -4,7 +4,6 @@ const handleOutsideClick = (
     close, 
     ref: MutableRefObject<HTMLDivElement>, 
     target: EventTarget
-) => 
-    (target === ref.current) && close();
+) => (target === ref.current) && close();
 
 export default handleOutsideClick;
