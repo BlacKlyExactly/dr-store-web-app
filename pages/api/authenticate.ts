@@ -5,12 +5,11 @@ import passport from "passport";
 import SteamStrategy from "passport-steam";
 
 const dev: boolean = process.env.NODE_ENV === "development";
-const port: string = process.env.NODE_ENV === 'production' ? "" : ":3000";
 const host: string | undefined = dev ? "http://localhost" : process.env.NEXT_PUBLIC_DOMAIN;
 
 const data = {
-    returnURL: `${host}${port}/api/return/`,
-    realm: `${host}${port}/`,
+    returnURL: `${host}:3000/api/return/`,
+    realm: `${host}:3000/`,
     apiKey: process.env.WEB_API_KEY
 }
 

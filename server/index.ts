@@ -5,7 +5,7 @@ import express from "express";
 import socketIo, { Socket } from "socket.io";
 import cron from "node-cron";
 
-const port: string = process.env.PORT || "3000";
+const port: string = "3000";
 
 const app = express();
 const server = new http.Server(app);
