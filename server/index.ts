@@ -1,14 +1,13 @@
-import Rps, { RpsPlayer } from "../rps";
-import http, { IncomingMessage, ServerResponse } from 'http';
+import { IncomingMessage, ServerResponse, Server as HttpServer } from 'http';
 import next from "next";
 import express from "express";
-import socketIo, { Socket } from "socket.io";
+import { Socket, Server as SocketServer } from "socket.io";
 import cron from "node-cron";
+import Rps, { RpsPlayer } from "../rps";
 
 const app = express();
-const server = new http.Server(app);
-const io = new socketIo.Server(server, {
-  transports: ["websocket"],
+const server = new HttpServer(app);
+const io = new SocketServer(server, {
   cors: {
     origin: "*"
   }
@@ -75,5 +74,5 @@ io.sockets.on("connection", ( socket: Socket ) => {
 
 nextApp.prepare().then(() => {
   app.get('*', ( req: IncomingMessage, res: ServerResponse ) => handle(req, res));
-  server.listen(3000, () => console.log("> Ready on -> 127.0.0.1:3000"));
+  server.listen(3000 || process.env.PORT, () => console.log("> Ready on -> 127.0.0.1:3000"));
 })

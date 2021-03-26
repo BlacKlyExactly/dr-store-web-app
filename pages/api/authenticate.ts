@@ -8,8 +8,8 @@ const dev: boolean = process.env.NODE_ENV === "development";
 const host: string | undefined = dev ? "http://localhost" : process.env.NEXT_PUBLIC_DOMAIN;
 
 const data = {
-    returnURL: `${host}:3000/api/return/`,
-    realm: `${host}:3000/`,
+    returnURL: `${host}:${process.env.PORT || 3000}/api/return/`,
+    realm: `${host}:${process.env.PORT || 3000}/`,
     apiKey: process.env.WEB_API_KEY
 }
 

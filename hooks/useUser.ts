@@ -4,15 +4,17 @@ import jwt from "jsonwebtoken";
 
 const useUser = ( ctx: NextPageContext ) => {
     const { token } = nextCookie(ctx);
-    const accessToken: string | null = token ? token : null;
     const isLoged: boolean = token ? true : false;
-
     const { COOKIES_SECRET } = process.env;
 
-    const data: UserData | null | string | {} | undefined = 
-        ( COOKIES_SECRET && accessToken ) ? jwt.verify(accessToken, COOKIES_SECRET) : null;
+    let data: UserData | string | {};
+
+    jwt.verify(token, COOKIES_SECRET, ( err, decoded: UserData ) => {
+        if(err || !decoded) return;
+        data = decoded;
+    })
     
-    return { accessToken, isLoged, data };
+    return { token, isLoged, data };
 }
 
 export interface UserData {

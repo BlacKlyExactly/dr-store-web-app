@@ -166,9 +166,10 @@ const Equipment: FC<AppUserProps> = ({ userData, isLoged }) => {
                         {
                             eq.data && 
                             eq.data.split(";")
-                                .filter(( itemId: string ) => itemId !== "")
-                                .map(( itemId: string ) => (
-                                    <Item name={getItemById(itemId)?.name} key={itemId}>
+                                .filter(( itemId: string ) => itemId !== "" && getItemById(itemId) !== undefined)
+                                .map(( itemId: string, index: number ) => (
+                                    <Item name={getItemById(itemId)?.name} key={`${itemId}#${index}`}>
+                                        {console.log(itemId)}
                                         <ItemImage src={getItemById(itemId)?.image}/>
                                         <ItemActions>
                                             <Button 

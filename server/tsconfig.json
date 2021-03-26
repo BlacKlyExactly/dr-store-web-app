@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "module": "es2015",
+      "outDir": "dist",
+      "target": "es2015",
+      "isolatedModules": false,
+      "noEmit": false,
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+    },
+}

@@ -212,7 +212,7 @@ const storeItems: StoreItem[] = [
     },	
 ];
 
-export const getItemById = ( id: string ): StoreItem =>
+export const getItemById = ( id: string ): StoreItem | undefined =>
     storeItems.find(( item: StoreItem ) => item.id === id);
 
 export default storeItems

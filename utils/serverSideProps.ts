@@ -5,8 +5,8 @@ export default async ( ctx: any ) => {
     
     return {
         props: {
-            userData: data,
-            isLoged
+            userData: data || {},
+            isLoged: isLoged || false
         }, 
     }
 }
