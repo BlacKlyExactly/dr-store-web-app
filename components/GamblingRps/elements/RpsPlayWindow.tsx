@@ -154,18 +154,17 @@ const RpsPlayWindow: FC = () => {
     const [ windowTl ] = useState<GSAPTimeline>(gsap.timeline({ paused: true }));
     const [ time, setTime ] = useState<number>(0);
     const [ timerState, setTimerState ] = useState<boolean>(false);
-    const [ gameTime, setGameTime ] = useState<number>(30);
-    const [ game, setGame ] = useState<RpsPlayer[]>([]);
 
     const { data, mutate } = useCoins(userData);
     
-    const { addToQueue, removeFromQueue, setMark, removeGame } = useRps(userData, 
-        ({ currentGame }: SocketData ) => setGame(currentGame),
-        ({ currentGame }: SocketData ) => setGame(currentGame),
-        ({ currentGame }: SocketData ) => setGame(currentGame),
-        ({ timeGame }: SocketTimeData ) => setGameTime(timeGame),
-        ( currentGame: RpsPlayer[] ) => setGame(currentGame),
-    )
+    const { 
+        addToQueue, 
+        removeFromQueue, 
+        setMark,
+        removeGame,
+        game,
+        gameTime
+    } = useRps(userData);
 
     const windowPanel = useRef<HTMLDivElement>(null);
     const mainPanel = useRef<HTMLDivElement>(null);
@@ -205,10 +204,10 @@ const RpsPlayWindow: FC = () => {
                 case RpsGameState.Win: {
                     Swal.fire({
                         title: "Wygrałeś!",
-                        text: `Zyskujesz ${((rate * 2) / 2).toFixed()} fajek.`
+                        text: `Zyskujesz ${rate * 2} fajek.`
                     })
 
-                    mutate({ coins: data + ((rate * 2) / 2).toFixed() });
+                    mutate({ coins: data + rate * 2 });
                     break;
                 }
 

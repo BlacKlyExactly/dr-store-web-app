@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 
-const endpoint: string = `${process.env.NEXT_PUBLIC_DOMAIN}:${process.env.PORT || 3000}`;
+const endpoint: string = process.env.NODE_ENV === "production" ? `${process.env.NEXT_PUBLIC_DOMAIN}` : "http://localhost:3000"
 const socket: SocketIOClient.Socket = io(endpoint, {
     reconnectionDelay: 1000,
     reconnection: true,

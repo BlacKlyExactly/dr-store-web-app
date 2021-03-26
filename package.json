@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node --project tsconfig.server.json server/index.ts",
+    "dev": "SET NODE_ENV=development & ts-node --project tsconfig.server.json server/index.ts",
     "build": "next build",
-    "start": "node server/index.ts"
+    "start": "NODE_ENV=production PORT=80 ts-node --project tsconfig.server.json server/index.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
